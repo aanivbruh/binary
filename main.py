@@ -13,11 +13,8 @@ def convertToDecimal(string1: str):
             num += int(letter) * (2 ** index)
             index += 1
         else:
-            return "Invalid input"
+            raise ValueError("Not a valid binary string")
     return num
-
-
-
 
 def convertToBinary(num:int):
     ind = int(num ** 0.5)
@@ -36,4 +33,4 @@ def addBinary(string1:str,string2:str):
     print(convertToBinary(answer))
     return answer
 
-print(addBinary("1001","1"))
+print(addBinary("1001","00000001354242"))
