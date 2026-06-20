@@ -53,7 +53,12 @@ def addBinaryWBinary(string1:str,string2:str):
        result = 0
        num1 = string1[len(string1)-x-1:len(string1)-x]
        num2 = string2[len(string1)-x-1:len(string1)-x]
-      
+       try:
+           if int(num1) + int(num2)  > 2:
+               raise(ValueError("Not Binary"))
+       except ValueError: # in the case that its ltters
+              raise ValueError("Not binary")
+       
        if num2 == "0" and num1 == "0":
           result += 0
        elif num2 == "0" and num1 == "1" or (num2 == "1"  and num1 == "0"):
@@ -73,6 +78,5 @@ def addBinaryWBinary(string1:str,string2:str):
        strResult = "1" + strResult
    return strResult
 
-print(addBinaryWBinary("11111","10101"))
     
        
