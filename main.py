@@ -43,47 +43,55 @@ def addBinary(string1:str,string2:str):
 
 def addBinaryWBinary(string1:str,string2:str):
    #longer string is string1, shorter is string 2
+   print(convertToDecimal(string1))
+   print(convertToDecimal(string2))
+
    strResult = ""
-   carry = 0
+   carry:str = "0"
    if len(string1) < len(string2):
        place = string1
        string1 = string2
        string2 = place
    for x in range(len(string1)):
-       result = 0
+       result = "0"
        num1 = string1[len(string1)-x-1:len(string1)-x]
        num2 = "0"
        if x < len(string2):
            num2 = string2[len(string2)-x-1:len(string2)-x]
-
-       print(num2)
-        # try:
-        #     if int(num1) + int(num2)  > 2:
-        #         raise(ValueError("Not Binary"))
-        # except ValueError: # in the case that its ltters
-        #         raise ValueError("Not binary")
-       
-       if num2 == "0" and num1 == "0":
-          result += 0
-       elif num2 == "0" and num1 == "1" or (num2 == "1"  and num1 == "0"):
-           result += 1
+       try:
+        if int(num1) + int(num2)  > 2:
+            raise(ValueError("Not Binary"))
+       except ValueError: # in the case that its ltters
+        raise ValueError("Not binary")
+       # two == 2
+       if num2 == "0" and num1 == "0" and carry == "0":
+          result = "0"
+       elif num2 == "0" and num1 == "0" and carry == "1":
+          result = "1"  
+       elif carry == "0" and ((num2 == "0" and num1 == "1") or (num2 == "1"  and num1 == "0")):
+           result = "1"
+       elif carry == "1" and (num2 == "0" and num1 == "1" or (num2 == "1"  and num1 == "0")):
+           result = "two"
+       elif carry =="1" and (num2 == "1" and num1 == "1"): # 2 
+           result = "three"
        else:
-           result += 2
+           result = "two" #three
 
-       result += carry
-
-       if result < 2:
+       if result == "1" or result == "0":
            strResult = str(result) + strResult
-           carry = 0
-       else:
-          carry = 1
-          strResult =  str(result%2) + strResult
-   if carry == 1:
+           carry = "0"
+       elif result == "two":
+          carry = "1"
+          strResult =  "0" + strResult
+       else: 
+           carry = "1"
+           strResult = "1" + strResult
+   if carry == "1":
        strResult = "1" + strResult
+   print(convertToDecimal(strResult))
+
    return strResult
 
     
-print(addBinaryWBinary("1110","111")) 
-print(convertToDecimal("10101"))
-print(convertToDecimal("1110"))
-print(convertToDecimal("111"))
+print(addBinaryWBinary("1111111110","11111")) 
+
