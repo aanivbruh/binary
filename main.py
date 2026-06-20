@@ -21,7 +21,7 @@ def convertToBinary(num:int):
     fakeNum = num
     str = ""
 
-    while fakeNum > 2:
+    while fakeNum >= 2:
         new = fakeNum/2
         fakeNum = new
         ind+=1
@@ -52,12 +52,16 @@ def addBinaryWBinary(string1:str,string2:str):
    for x in range(len(string1)):
        result = 0
        num1 = string1[len(string1)-x-1:len(string1)-x]
-       num2 = string2[len(string1)-x-1:len(string1)-x]
-       try:
-           if int(num1) + int(num2)  > 2:
-               raise(ValueError("Not Binary"))
-       except ValueError: # in the case that its ltters
-              raise ValueError("Not binary")
+       num2 = "0"
+       if x < len(string2):
+           num2 = string2[len(string2)-x-1:len(string2)-x]
+
+       print(num2)
+        # try:
+        #     if int(num1) + int(num2)  > 2:
+        #         raise(ValueError("Not Binary"))
+        # except ValueError: # in the case that its ltters
+        #         raise ValueError("Not binary")
        
        if num2 == "0" and num1 == "0":
           result += 0
@@ -79,4 +83,7 @@ def addBinaryWBinary(string1:str,string2:str):
    return strResult
 
     
-       
+print(addBinaryWBinary("1110","111")) 
+print(convertToDecimal("10101"))
+print(convertToDecimal("1110"))
+print(convertToDecimal("111"))
